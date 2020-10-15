@@ -1,0 +1,243 @@
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- Fin Sidebar -->
+
+    <!-- Contenido Pagina" -->
+    <main class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-9">
+                    <h1 class="mb-0"> <img src="../../assets/img/veterinary.png" width="70" alt="image"> Catalogo de Servicios</h1>
+                    <p class="lead text-muted">Porque buscamos lo mejor para los consentidos del hogar tenemos muchos servicios de alta calidad</p>
+                </div>
+                
+            </div>
+            <br>
+            <h3><li class="fa fa-user-md"></li> Menú de Servicios</h3>
+            <section class="bg-mix">
+                <div class="card rounded-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3 d-flex stat my-3">
+                                <div class="mx-auto">
+                                    <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#ModalCreate" >
+                                    <img src="../../assets/img/grooming.png" width="50" alt="image">
+                                    <h6 class="text-muted">Cortes de Pelo</h6>
+                                    <h6 class="text-warning">Pendientes</h6>
+                                    
+                                </button>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex stat my-3">
+                                <div class="mx-auto">
+                                    <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#ModalCreate" >
+                                    <img src="../../assets/img/pills.png" width="50" alt="image">
+                                    <h6 class="text-muted">Medicinas</h6>
+                                    <h6 class="text-success">Hecho
+                                    </h6>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex stat my-3">
+                                <div class="mx-auto">
+                                    <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#ModalCreate" >
+                                    <img src="../../assets/img/soap.png" width="50" alt="image">
+                                    <h6 class="text-muted">Baño completo</h6>
+                                    <h6 class="text-warning">Pendientes</h6>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex my-3">
+                                <div class="mx-auto">
+                                    <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#ModalCreate" >
+                                    <img src="../../assets/img/dog-food.png" width="50" alt="image">
+                                    <h6 class="text-muted">Alimentos</h6>
+                                    <h6 class="text-success">Hecho</h6>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex my-3">
+                                <div class="mx-auto">
+                                    <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#ModalCreate" >
+                                    <img src="../../assets/img/flea.png" width="50" alt="image">
+                                    <h6 class="text-muted">Plagas</h6>
+                                    <h6 class="text-success">Hecho
+                                    </h6>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex my-3">
+                                <div class="mx-auto">
+                                    <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#ModalCreate" >
+                                    <img src="../../assets/img/dog-carrier.png" width="50" alt="image">
+                                    <h6 class="text-muted">Alojamiento Temporal</h6>
+                                    <h6 class="text-success">Hecho
+                                    </h6>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex my-3">
+                                <div class="mx-auto">
+                                    <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#ModalCreate" >
+                                    <img src="../../assets/img/collars(1).png" width="50" alt="image">
+                                    <h6 class="text-muted">Accesorios</h6>
+                                    <h6 class="text-success">Hecho
+                                    </h6>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-3 d-flex my-3">
+                                <div class="mx-auto">
+                                    <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#ModalCreate" >
+                                    <img src="../../assets/img/phonendoscope.png" width="50" alt="image">
+                                    <h6 class="text-muted">Consultas</h6>
+                                    <h6 class="text-success">Hecho
+                                    </h6>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- Modal Crear-->
+<div class="modal fade" id="ModalCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title font-weight-bold" id="exampleModalLabel"> <li class="fa fa-linux"></li> Información del Servicio
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form >
+            <input type="hidden" formControlName="estado" id="estado" name="estado">
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                            name="nombre" readonly placeholder="Nombre del Servicio">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="dui">Descripcion</label>
+                        <textarea   type="text" formControlName="dui" class="form-control " id="dui"
+                            name="dui" placeholder="Descripcion del servicio" readonly></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="rol">Encargado:</label>
+                        <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                            name="nombre" readonly placeholder="Nombre del encargado">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cargo">Precio: $</label>
+                        <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                            name="nombre" readonly placeholder="200">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<!-- Fin Modal Crear-->
+            
+        </div>
+    </main>
+    <div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Editar empleado
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form >
+                    <input type="hidden" formControlName="id" id="id" name="id">
+                    <input type="hidden" formControlName="estado" id="estado" name="estado">
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                                    name="nombre">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="dui">DUI</label>
+                                <input type="text" formControlName="dui" class="form-control" id="dui"
+                                    name="dui">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nit">NIT</label>
+                                <input type="text" formControlName="nit" class="form-control" id="nit"
+                                    name="nit">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="direccion">Dirección</label>
+                                <input type="text" formControlName="direccion" class="form-control"
+                                    id="direccion" name="direccion">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="telefono">Teléfono</label>
+                                <input type="text" formControlName="telefono" class="form-control" id="telefono"
+                                    name="telefono">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="rol">Rol</label>
+                                <select formControlName="rol" class="form-control" id="rol" name="rol">
+                                    <option value="Administrador" selected>Administrador</option>
+                                    <option value="Empleado">Empleado</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cargo">Cargo</label>
+                                <select formControlName="cargo" class="form-control" id="cargo" name="cargo">
+                                    <option value="Veterinario 1" selected>Veterinario 1</option>
+                                    <option value="Veterinario 2">Veterinario 2</option>
+                                    <option value="Veterinario 2">Veterinario 3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Contenido Pagina" -->
+</div>
