@@ -1,1 +1,274 @@
-<p>cita works!</p>
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- Fin Sidebar -->
+
+    <!-- Contenido Pagina" -->
+    <main class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-9">
+                    <h1 class="mb-0">Registro de Citas</h1>
+                </div>
+                <div class="col-3 d-flex">
+                    <button type="button" class="btn btn-primary w-100 align-self-center" data-toggle="modal"
+                        data-target="#ModalCreate">
+                        Nueva Cita
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <!-- Tabla -->
+            <section class="py-3">
+                <div class="row">
+                    <div class="col-12 my-3">
+                        <div class="card rounded-0">
+                            <div class="card-header bg-light">
+                                <h6 class="font-weight-bold mb-0">Tabla de Datos</h6>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-hover table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Mascota</th>
+                                            <th scope="col">Servicio</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Hora</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Cliente1</th>
+                                            <th>Mascota1</th>
+                                            <td>Servicio1</td>
+                                            <td>Fecha1</td>
+                                            <td>Hora1</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm" role="group"
+                                                    aria-label="Basic example">
+                                                    <button type="button"   click=""
+                                                        class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#ModalEdit">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" click=""
+                                                        class="btn btn-light" data-toggle="modal"
+                                                        data-target="#ModalView">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                    <button type="button" click=""
+                                                        class="btn btn-dark" data-toggle="modal"
+                                                        data-target="#ModalDelete">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Fin Tabla -->
+
+            <!-- Modal Crear-->
+            <div class="modal fade" id="ModalCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Nueva Cita
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form>
+                            <input type="hidden" formControlName="estado" id="estado" name="estado">
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="nombre">Cliente</label>
+                                        <select formControlName="cliente" name="cliente" class="form-control" id="cliente">
+                                          <option>Seleccione el Cliente</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="dui">Mascota</label>
+                                        <select formControlName="mascota" name="mascota" class="form-control" id="mascota">
+                                            <option>Seleccione la Mascota</option>
+                                        </select>
+                                    </div>
+                                <div class="form-row"></div>
+                                    <div class="form-group col-md-12">
+                                        <label for="nit">Servicio</label>
+                                        <select formControlName="servicio" name="servicio" class="form-control" id="servicio">
+                                            <option>Seleccione el Servicio</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label for="direccion">Fecha</label>
+                                        <input type="date" class="form-control" id="fecha" name="fecha">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="telefono">Hora</label>
+                                        <input type="time" class="form-control" id="hora" name="hora">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                                <button type="submit"
+                                    click="" class="btn btn-primary align-self-center"
+                                    data-dismiss="modal">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Modal Crear-->
+
+            <!-- Modal Editar-->
+            <div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Editar Cita
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form>
+                            <input type="hidden" formControlName="id" id="id" name="id">
+                            <input type="hidden" formControlName="estado" id="estado" name="estado">
+                            <div class="modal-body">
+                                <div class="form-group col-md-12">
+                                    <label for="nombre">Cliente</label>
+                                    <select formControlName="cliente" name="cliente" class="form-control" id="cliente">
+                                      <option>Seleccione el Cliente</option>
+                                  </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="dui">Mascota</label>
+                                        <select formControlName="mascota" name="mascota" class="form-control" id="mascota">
+                                            <option>Seleccione la Mascota</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-row"></div>
+                                    <div class="form-group col-md-12">
+                                        <label for="nit">Servicio</label>
+                                        <select formControlName="servicio" name="servicio" class="form-control" id="servicio">
+                                            <option>Seleccione el Servicio</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label for="direccion">Fecha</label>
+                                        <input type="date" class="form-control" id="fecha" name="fecha">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="telefono">Hora</label>
+                                        <input type="time" class="form-control" id="hora" name="hora">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                                <button type="submit"
+                                    click="" class="btn btn-primary align-self-center"
+                                    data-dismiss="modal">Editar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Modal Editar-->
+
+            <!-- Modal Detalle-->
+            <div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Información de la Cita
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td class="font-weight-bold text-right">Cliente:</td>
+                                    <td class="text-left">NombreCliente</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-right">Mascota:</td>
+                                    <td class="text-left">NombreMascota</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-right">Servicio:</td>
+                                    <td class="text-left">Servicio</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-right">Fecha:</td>
+                                    <td class="text-left">Fecha</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold text-right">Hora:</td>
+                                    <td class="text-left">Hora</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Modal Detalle-->
+
+            <!-- Modal para Borrar-->
+            <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Eliminar Cita
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form>
+                            <div class="modal-body">
+                                <p>¿Desea eliminar esta cita?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" click="" class="btn btn-primary"
+                                    data-dismiss="modal">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Modal para Borrar -->
+
+        </div>
+    </main>
+    <!-- Fin Contenido Pagina" -->
+</div>
