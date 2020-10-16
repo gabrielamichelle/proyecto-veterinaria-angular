@@ -11,6 +11,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CitaComponent } from './cita/cita.component';
+import { ProductosComponent } from './productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CitaComponent } from './cita/cita.component';
     SidebarComponent,
     EmpleadoComponent,
     PageNotFoundComponent,
-    CitaComponent
+    CitaComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,
