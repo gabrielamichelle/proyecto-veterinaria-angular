@@ -12,6 +12,7 @@ import { EmpleadoComponent } from './empleado/empleado.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CitaComponent } from './cita/cita.component';
 import { ProductosComponent } from './productos/productos.component';
+import { ExpedientemascotaComponent } from './expedientemascota/expedientemascota.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductosComponent } from './productos/productos.component';
     EmpleadoComponent,
     PageNotFoundComponent,
     CitaComponent,
-    ProductosComponent
+    ProductosComponent,
+    ExpedientemascotaComponent
   ],
   imports: [
     BrowserModule,
