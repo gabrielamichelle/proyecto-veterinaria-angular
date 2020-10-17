@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod --output-path public &&  firebase deploy"
   },
   "private": true,
   "dependencies": {
@@ -15,6 +16,7 @@
     "@angular/common": "~10.0.11",
     "@angular/compiler": "~10.0.11",
     "@angular/core": "~10.0.11",
+    "@angular/fire": "^6.0.3",
     "@angular/forms": "~10.0.11",
     "@angular/platform-browser": "~10.0.11",
     "@angular/platform-browser-dynamic": "~10.0.11",
@@ -22,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@popperjs/core": "^2.4.4",
     "bootstrap": "^4.5.2",
+    "firebase": "^7.24.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
     "rxjs": "~6.5.5",
