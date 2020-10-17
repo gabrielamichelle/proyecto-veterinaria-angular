@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { CitaComponent } from './cita/cita.component';
+import { ClienteComponent } from './cliente/cliente.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'cita',
     component: CitaComponent
+  },
+  {
+    path: 'cliente',
+    component: ClienteComponent
   },
   {
     path: '**',
