@@ -1,11 +1,9 @@
 export class Empleado {
-    id?: number;
+    $id: string;
     nombre: string;
     dui: number;
     nit: number;
     direccion: string;
     telefono: number;
-    rol: string;
     cargo: string;
-    estado: string;
 }

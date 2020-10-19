@@ -1,0 +1,18 @@
+{
+  "targets": {
+    "proyecto-veterinaria-64c93": {
+      "hosting": {
+        "proyecto-veterinaria": [
+          "proyecto-veterinaria-64c93"
+        ]
+      }
+    },
+    "proy-vet": {
+      "hosting": {
+        "proyecto-veterinaria": [
+          "proy-vet"
+        ]
+      }
+    }
+  }
+}
