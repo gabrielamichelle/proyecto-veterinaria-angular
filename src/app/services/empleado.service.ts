@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Firebase
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 // Model
 import { Empleado } from '../models/empleado';
 
@@ -12,6 +12,7 @@ export class EmpleadoService {
 
   empleadoList: AngularFireList<any>;
   selectEmpleado: Empleado = new Empleado();
+  empleado: AngularFireList<any>;
 
   constructor(
     private firebase: AngularFireDatabase
@@ -19,6 +20,10 @@ export class EmpleadoService {
 
   getEmployees() {
     return this.empleadoList = this.firebase.list('empleados');
+  }
+
+  getEmployee($id: string) {
+    return this.empleado = this.firebase.list('empleados', data => data.equalTo($id));
   }
 
   insertEmployee(data: Empleado) {

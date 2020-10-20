@@ -17,28 +17,35 @@
             <hr>
             <section>
                 <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
-                    <input type="hidden" class="form-control" name="$id" #$id="ngModel" [(ngModel)]="empleadoService.selectEmpleado.$id">
+                    <input type="hidden" class="form-control" name="$id" #$id="ngModel"
+                        [(ngModel)]="empleadoService.selectEmpleado.$id">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre Completo" name="nombre" #nombre="ngModel" [(ngModel)]="empleadoService.selectEmpleado.nombre">
+                        <input type="text" class="form-control" placeholder="Nombre Completo" name="nombre"
+                            #nombre="ngModel" [(ngModel)]="empleadoService.selectEmpleado.nombre">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Direccion" name="direccion" #direccion="ngModel" [(ngModel)]="empleadoService.selectEmpleado.direccion">
+                        <input type="text" class="form-control" placeholder="Direccion" name="direccion"
+                            #direccion="ngModel" [(ngModel)]="empleadoService.selectEmpleado.direccion">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" placeholder="DUI" name="dui" #dui="ngModel" [(ngModel)]="empleadoService.selectEmpleado.dui">
+                            <input type="text" class="form-control" placeholder="DUI" name="dui" #dui="ngModel"
+                                [(ngModel)]="empleadoService.selectEmpleado.dui">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" placeholder="NIT" name="nit" #nit="ngModel" [(ngModel)]="empleadoService.selectEmpleado.nit">
+                            <input type="text" class="form-control" placeholder="NIT" name="nit" #nit="ngModel"
+                                [(ngModel)]="empleadoService.selectEmpleado.nit">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" placeholder="Telefono" name="telefono" #telefono="ngModel" [(ngModel)]="empleadoService.selectEmpleado.telefono">
+                            <input type="text" class="form-control" placeholder="Telefono" name="telefono"
+                                #telefono="ngModel" [(ngModel)]="empleadoService.selectEmpleado.telefono">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cargo">Cargo</label>
-                            <select class="form-control" name="cargo" #cargo="ngModel" [(ngModel)]="empleadoService.selectEmpleado.cargo">
+                            <select class="form-control" name="cargo" #cargo="ngModel"
+                                [(ngModel)]="empleadoService.selectEmpleado.cargo">
                                 <option value="Veterinario/a" selected>Veterinario/a</option>
                                 <option value="Enfermero/a">Enfermero/a</option>
                             </select>
@@ -86,6 +93,11 @@
                                                         data-target="#ModalEdit">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
+                                                    <button type="button" (click)="verEmpleado(empleado.$id)"
+                                                        class="btn btn-light" data-toggle="modal"
+                                                        data-target="#ModalView">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
                                                     <button type="button" (click)="borrarEmpleado(empleado.$id)"
                                                         class="btn btn-dark">
                                                         <i class="fa fa-trash"></i>
@@ -104,4 +116,51 @@
         </div>
     </main>
     <!-- Fin Contenido Pagina" -->
+
+    <!-- Modal Detalle-->
+    <div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Información del empleado
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" *ngFor="let item of empleado ">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="font-weight-bold text-right">Nombre:</td>
+                            <td class="text-left">{{ item.nombre }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">DUI:</td>
+                            <td class="text-left">{{ item.dui }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">NIT:</td>
+                            <td class="text-left">{{ item.nit }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Dirección:</td>
+                            <td class="text-left">{{ item.direccion }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Teléfono:</td>
+                            <td class="text-left">{{ item.telefono }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Cargo:</td>
+                            <td class="text-left">{{ item.cargo }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Detalle-->
 </div>

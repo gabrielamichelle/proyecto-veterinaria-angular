@@ -10,8 +10,8 @@ import { NgForm } from '@angular/forms';
 })
 export class EmpleadoComponent implements OnInit {
 
-  empleado: Empleado = new Empleado();
-
+  /* public empleado: Empleado[]; */
+  public empleado: any[];
   public empleadoList: Empleado[];
 
   constructor(
@@ -26,7 +26,6 @@ export class EmpleadoComponent implements OnInit {
   }
 
   onSubmit(empleadoForm: NgForm) {
-    /* this.empleadoService.insertEmployee(empleadoForm.value); */
     if (empleadoForm.value.$id == null) {
       this.empleadoService.insertEmployee(empleadoForm.value);
     }
@@ -61,8 +60,8 @@ export class EmpleadoComponent implements OnInit {
     this.empleadoService.selectEmpleado = Object.assign({}, data);
   }
 
-  detalleEmpleado () {
-
+  verEmpleado ($id: string) {
+    return this.empleado = this.empleadoList.filter(data => data.$id === $id);
   }
 
   borrarEmpleado($id: string) {
