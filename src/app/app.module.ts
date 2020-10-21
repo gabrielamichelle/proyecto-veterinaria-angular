@@ -27,6 +27,14 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ExpedientemascotaComponent } from './expedientemascota/expedientemascota.component';
+import { ClienteComponent } from './cliente/cliente.component';
+
+//import { environment } from '../environments/environment';
+//import { AngularFireModule } from '@angular/fire';
+//import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+//Service
+import { ClienteService } from './servicecliente/cliente.service';
 
 @NgModule({
   declarations: [
@@ -43,9 +51,10 @@ import { ExpedientemascotaComponent } from './expedientemascota/expedientemascot
     VerifyEmailComponent,
     
     ProductosComponent,
-    ExpedientemascotaComponent
+    ExpedientemascotaComponent,
+    ClienteComponent
   ],
-  providers: [UserService],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -56,6 +65,7 @@ import { ExpedientemascotaComponent } from './expedientemascota/expedientemascot
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
+  providers: [ClienteService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,6 +15,7 @@ import { AuthGuard } from "./guard/auth.guard";
 import { from } from 'rxjs';
 import { ProductosComponent } from './productos/productos.component';
 import { ExpedientemascotaComponent } from './expedientemascota/expedientemascota.component';
+import { ClienteComponent } from './cliente/cliente.component';
 
 const routes: Routes = [
   /*{
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'cita',
     component: CitaComponent
+  },
+  {
+    path: 'cliente',
+    component: ClienteComponent
   },
   {
     path: '**',

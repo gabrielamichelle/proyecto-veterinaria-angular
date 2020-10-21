@@ -1,0 +1,146 @@
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- Fin Sidebar -->
+
+        <!-- Contenido Pagina" -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-9">
+                        <h1 class="mb-0">Registro de Clientes</h1>
+                    </div>
+                </div>
+                <hr>
+                <section>
+                    <form #clienteForm="ngForm" (ngSubmit)="onSubmit(clienteForm)">
+                        <input type="hidden" class="form-control" name="$key" #$id="ngModel" [(ngModel)]="clienteService.selectedClient.$key">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre Completo" name="nombre" #nombre="ngModel" [(ngModel)]="clienteService.selectedClient.nombre">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="DUI" name="dui" #dui="ngModel" [(ngModel)]="clienteService.selectedClient.dui">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Direccion" name="direccion" #direccion="ngModel" [(ngModel)]="clienteService.selectedClient.direccion">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Telefono" name="telefono" #telefono="ngModel" [(ngModel)]="clienteService.selectedClient.telefono">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Correo Electronico" name="correo" #correo="ngModel" [(ngModel)]="clienteService.selectedClient.correo">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="reset" class="btn btn-dark ml-1" (click)="resetForm(clienteForm)">Limpiar</button>
+                    </form>
+                </section>
+    
+                <!-- Tabla -->
+                <section class="py-3">
+                    <div class="row">
+                        <div class="col-12 my-3">
+                            <div class="card rounded-0">
+                                <div class="card-header bg-light">
+                                    <h6 class="font-weight-bold mb-0">Tabla de Datos</h6>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-hover table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">DUI</th>
+                                                <th scope="col">Direccion</th>
+                                                <th scope="col">Teléfono</th>
+                                                <th scope="col">Correo</th>
+                                                <th scope="col">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cliente of clienteList">
+                                                <td>{{cliente.nombre}}</td>
+                                                <td>{{cliente.dui}}</td>
+                                                <td>{{cliente.direccion}}</td>
+                                                <td>{{cliente.telefono}}</td>
+                                                <td>{{cliente.correo}}</td>
+                                                <td>
+                                                    <div class="btn-group btn-group-sm" role="group"
+                                                        aria-label="Basic example">
+                                                        <button type="button" (click)="Editar(cliente)"
+                                                            class="btn btn-primary" data-toggle="modal"
+                                                            data-target="#ModalEdit">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        <button type="button" (click)="verCliente(cliente.$key)"
+                                                            class="btn btn-light" data-toggle="modal"
+                                                            data-target="#ModalView">
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
+                                                        <button type="button" (click)="Borrar(cliente.$key)"
+                                                            class="btn btn-dark">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Fin Tabla -->
+            </div>
+        </main>
+    
+       <!-- Modal Detalle-->
+       <div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Información del Cliente
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" *ngFor="let client of client ">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="font-weight-bold text-right">Nombre:</td>
+                            <td class="text-left">{{ client.nombre }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">DUI:</td>
+                            <td class="text-left">{{ client.dui }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Dirección:</td>
+                            <td class="text-left">{{ client.direccion }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Teléfono:</td>
+                            <td class="text-left">{{ client.telefono }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Correo:</td>
+                            <td class="text-left">{{ client.correo }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Detalle-->
+    
+        <!-- Fin Contenido Pagina" -->
+
+</div>
