@@ -13,6 +13,9 @@ import { ForgotPasswordComponent } from '../app/components/forgot-password/forgo
 import { VerifyEmailComponent } from '../app/components/verify-email/verify-email.component';
 import { AuthGuard } from "./guard/auth.guard";
 import { from } from 'rxjs';
+import { ProductosComponent } from './productos/productos.component';
+import { ExpedientemascotaComponent } from './expedientemascota/expedientemascota.component';
+
 const routes: Routes = [
   /*{
     path: '',
@@ -35,6 +38,14 @@ const routes: Routes = [
   {
     path: 'empleado',
     component: EmpleadoComponent
+  },
+  {
+    path: 'productos',
+    component: ProductosComponent
+  },
+  {
+    path: 'expedientemascota',
+    component: ExpedientemascotaComponent
   },
   {
     path: 'cita',

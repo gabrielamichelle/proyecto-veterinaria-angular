@@ -25,6 +25,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { ProductosComponent } from './productos/productos.component';
+import { ExpedientemascotaComponent } from './expedientemascota/expedientemascota.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
     ForgotPasswordComponent,
     VerifyEmailComponent,
     
+    ProductosComponent,
+    ExpedientemascotaComponent
   ],
   providers: [UserService],
   imports: [
