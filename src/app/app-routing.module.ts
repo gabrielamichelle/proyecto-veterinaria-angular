@@ -16,6 +16,9 @@ import { from } from 'rxjs';
 import { ProductosComponent } from './productos/productos.component';
 import { ExpedientemascotaComponent } from './expedientemascota/expedientemascota.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { MascotasComponent } from './mascotas/mascotas.component';
+import { MascotaComponent } from './mascotas/mascota/mascota.component';
+import { MascotaListComponent } from './mascotas/mascota-list/mascota-list.component';
 
 const routes: Routes = [
   /*{
@@ -55,6 +58,18 @@ const routes: Routes = [
   {
     path: 'cliente',
     component: ClienteComponent
+  },
+  {
+    path: 'mascotas',
+    component: MascotasComponent
+  },
+  {
+    path: 'mascota',
+    component: MascotaComponent
+  },
+  {
+    path: 'mascota-list',
+    component: MascotaListComponent
   },
   {
     path: '**',

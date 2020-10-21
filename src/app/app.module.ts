@@ -36,6 +36,21 @@ import { ClienteComponent } from './cliente/cliente.component';
 //Service
 import { ClienteService } from './servicecliente/cliente.service';
 
+// firebase
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+// Toastr, para notificaciones en angular
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { MascotasComponent } from './mascotas/mascotas.component';
+import { MascotaComponent } from './mascotas/mascota/mascota.component';
+import { MascotaListComponent } from './mascotas/mascota-list/mascota-list.component';
+
+//service
+import { MascotasService } from './services/mascotas.service';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,11 +67,17 @@ import { ClienteService } from './servicecliente/cliente.service';
     
     ProductosComponent,
     ExpedientemascotaComponent,
-    ClienteComponent
+    ClienteComponent,
+    MascotasComponent,
+    MascotaComponent,
+    MascotaListComponent
   ],
   
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
