@@ -1,0 +1,145 @@
+
+<div class="card">
+    <div class="card-body">
+        <h6 class="text-center">
+            Registros
+        </h6>
+        <div class="row">
+          <div class="col-8">
+            <input type="text" class="form-control" id="buscar"  placeholder="Ingrese ID cliente" name = "buscar" [(ngModel)]="busqueda">
+          </div>
+          <div class="col-4">
+            <button type="button" class="btn btn-success" (click)="Buscar()">Buscar</button>
+          </div>
+        </div>
+        <br>
+        
+        <table  class="table table-sm table-hover">
+            <thead class="thead-dark">
+              
+                    
+                <th >idmascota</th>
+                <th>idcliente</th>
+                <th>Nombre Mascota</th>
+                <TH>Raza</TH>
+                <TH>Edad</TH>
+                <th>Sexo</th>
+                <th>Opciones</th>
+                
+            </thead>
+           
+           
+           
+            <tbody>
+                <tr *ngFor="let mascotas of mascotasList">
+                    <!--<td>{{mascotas.$key}}</td>  -->            
+                    <td>{{mascotas.idmascota}}</td>
+                    <td>{{mascotas.idcliente}}</td>
+                    <td>{{mascotas.nombremascota}}</td>
+                    <td>{{mascotas.raza}}</td>
+                    <td>{{mascotas.edad}}</td>
+                    <td>{{mascotas.sexo}}</td>
+                    <td>
+                        <a class="btn btn-secondary text-white" (click)="onEdit(mascotas)">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                        <a class="btn btn-dark text-white" data-toggle="modal" data-target="#exampleModal"  (click)="Seleccion(mascotas)">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+      
+    </div>
+    
+
+
+
+
+<!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Informacion de Mascota</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <div class="form-group">
+            <div class="row">
+             <div class="col-4">
+               <label for="idmascota">idmascota:</label>
+             </div>
+             <div class="col-6">
+               <input type="text" class="form-control" name="idmascota" [(ngModel)]="mascotaService.selectedMascotas.idmascota" disabled>
+             </div>
+            </div>
+           </div>
+           <div class="form-group">
+            <div class="row">
+             <div class="col-4">
+               <label for="idcliente">idcliente:</label>
+             </div>
+             <div class="col-6">
+               <input type="text" class="form-control" name="idcliente" [(ngModel)]="mascotaService.selectedMascotas.idcliente" disabled>
+             </div>
+            </div>
+           </div>
+           <div class="form-group">
+            <div class="row">
+             <div class="col-4">
+               <label for="nombremascota">Nombre Mascota:</label>
+             </div>
+             <div class="col-6">
+               <input type="text" class="form-control" name="nombremascota" [(ngModel)]="mascotaService.selectedMascotas.nombremascota" disabled>
+             </div>
+            </div>
+           </div>
+           <div class="form-group">
+            <div class="row">
+             <div class="col-4">
+               <label for="raza">Raza:</label>
+             </div>
+             <div class="col-6">
+               <input type="text" class="form-control" name="raza" [(ngModel)]="mascotaService.selectedMascotas.raza" disabled>
+             </div>
+            </div>
+           </div>
+           <div class="form-group">
+            <div class="row">
+             <div class="col-4">
+               <label for="edad">Edad:</label>
+             </div>
+             <div class="col-6">
+               <input type="text" class="form-control" name="edad" [(ngModel)]="mascotaService.selectedMascotas.edad" disabled>
+             </div>
+            </div>
+           </div>
+           <div class="form-group">
+            <div class="row">
+             <div class="col-4">
+               <label for="sexo">Sexo</label>
+             </div>
+             <div class="col-6">
+               <input type="text" class="form-control" name="sexo" [(ngModel)]="mascotaService.selectedMascotas.sexo" disabled>
+             </div>
+            </div>
+           </div>
+           
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  

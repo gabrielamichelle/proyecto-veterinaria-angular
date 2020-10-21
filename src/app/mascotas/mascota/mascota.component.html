@@ -1,0 +1,58 @@
+
+
+
+
+
+
+<h1 class="display-4 text-center">Registro de Mascotas</h1>
+<div class="card mt-5">
+    <div class="card-body">
+
+        <!-- Cuando el evento onSubmit , suceda se va pasar todo el formulario 'productForm' -->
+        <form #mascotasForm="ngForm" (ngSubmit)="onSubmit(mascotasForm)">
+
+            <!-- TO UPDATE -->
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="mascotasService.selectedMascotas.$key">
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="idmascota" #name="ngModel"
+                    [(ngModel)]="mascotasService.selectedMascotas.idmascota" placeholder="ID mascota">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="idcliente" #name="ngModel"
+                    [(ngModel)]="mascotasService.selectedMascotas.idcliente" placeholder="ID cliente">
+            </div>
+          
+            <div class="form-group">
+                <input type="text" class="form-control" name="nombremascota" #category="ngModel"
+                    [(ngModel)]="mascotasService.selectedMascotas.nombremascota" placeholder="Nombre de mascota">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="raza" #location="ngModel"
+                    [(ngModel)]="mascotasService.selectedMascotas.raza" placeholder="Raza">
+            </div>
+
+            <div class="form-group">
+                <input type="number" min="1" class="form-control" name="edad" #location="ngModel"
+                    [(ngModel)]="mascotasService.selectedMascotas.edad" placeholder="Edad">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="sexo" #location="ngModel"
+                    [(ngModel)]="mascotasService.selectedMascotas.sexo" placeholder="Sexo">
+            </div>
+
+  
+
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">
+                    <i class="fa fa-plus"></i> Agregar Registro
+                </button>
+                <button class="btn btn-danger" type="reset" (click)="resetForm(mascotasForm)">
+                    <i class="fa fa-times"></i> Limpiar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
