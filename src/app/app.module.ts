@@ -15,6 +15,9 @@ import { environment } from '../environments/environment';
 // Auth service
 import { UserService } from "./services/user.service";
 
+// services
+import { EmpleadoService } from './services/empleado.service';
+
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
@@ -49,8 +52,6 @@ import { MascotaListComponent } from './mascotas/mascota-list/mascota-list.compo
 //service
 import { MascotasService } from './services/mascotas.service';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,11 +83,10 @@ import { MascotasService } from './services/mascotas.service';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [ClienteService,UserService],
+  providers: [ClienteService,UserService,EmpleadoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

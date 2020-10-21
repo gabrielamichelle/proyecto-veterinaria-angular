@@ -1,19 +1,58 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
+// Firebase
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+// Model
 import { Empleado } from '../models/empleado';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpleadoService {
-  private api = 'http://127.0.0.1:8000/api';
+
+  empleadoList: AngularFireList<any>;
+  selectEmpleado: Empleado = new Empleado();
+  empleado: AngularFireList<any>;
 
   constructor(
-    private http: HttpClient
+    private firebase: AngularFireDatabase
   ) { }
 
-  getAllEmployes(): Observable<any> {
+  getEmployees() {
+    return this.empleadoList = this.firebase.list('empleados');
+  }
+
+  getEmployee($id: string) {
+    return this.empleado = this.firebase.list('empleados', data => data.equalTo($id));
+  }
+
+  insertEmployee(data: Empleado) {
+    this.empleadoList.push({
+      nombre: data.nombre,
+      dui: data.dui,
+      nit: data.nit,
+      direccion: data.direccion,
+      telefono: data.telefono,
+      cargo: data.cargo
+    });
+  }
+
+  updateEmployee(data: Empleado) {
+    this.empleadoList.update(data.$id, {
+      nombre: data.nombre,
+      dui: data.dui,
+      nit: data.nit,
+      direccion: data.direccion,
+      telefono: data.telefono,
+      cargo: data.cargo
+    });
+  }
+
+  deleteEmployee($id: string) {
+    this.empleadoList.remove($id);
+  }
+
+  /* getAllEmployes(): Observable<any> {
     const path = `${this.api}/empleado/`;
     return this.http.get(path);
   }
@@ -41,5 +80,5 @@ export class EmpleadoService {
   deleteEmploye(id: number): Observable<any> {
     const path = `${this.api}/empleado/${id}`;
     return this.http.delete(path);
-  }
+  } */
 }

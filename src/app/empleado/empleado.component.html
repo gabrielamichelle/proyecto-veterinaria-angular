@@ -13,14 +13,49 @@
                 <div class="col-9">
                     <h1 class="mb-0">Mantenimieto de Empleado</h1>
                 </div>
-                <div class="col-3 d-flex">
-                    <button type="button" class="btn btn-primary w-100 align-self-center" data-toggle="modal"
-                        data-target="#ModalCreate">
-                        Nuevo Empleado
-                    </button>
-                </div>
             </div>
             <hr>
+            <section>
+                <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
+                    <input type="hidden" class="form-control" name="$id" #$id="ngModel"
+                        [(ngModel)]="empleadoService.selectEmpleado.$id">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombre Completo" name="nombre"
+                            #nombre="ngModel" [(ngModel)]="empleadoService.selectEmpleado.nombre">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Direccion" name="direccion"
+                            #direccion="ngModel" [(ngModel)]="empleadoService.selectEmpleado.direccion">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="DUI" name="dui" #dui="ngModel"
+                                [(ngModel)]="empleadoService.selectEmpleado.dui">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="NIT" name="nit" #nit="ngModel"
+                                [(ngModel)]="empleadoService.selectEmpleado.nit">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" placeholder="Telefono" name="telefono"
+                                #telefono="ngModel" [(ngModel)]="empleadoService.selectEmpleado.telefono">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cargo">Cargo</label>
+                            <select class="form-control" name="cargo" #cargo="ngModel"
+                                [(ngModel)]="empleadoService.selectEmpleado.cargo">
+                                <option value="Veterinario/a" selected>Veterinario/a</option>
+                                <option value="Enfermero/a">Enfermero/a</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="reset" class="btn btn-dark ml-1" (click)="resetForm(empleadoForm)">Limpiar</button>
+                </form>
+            </section>
+
             <!-- Tabla -->
             <section class="py-3">
                 <div class="row">
@@ -33,37 +68,38 @@
                                 <table class="table table-hover table-sm table-bordered">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Id</th>
                                             <th scope="col">Nombre</th>
-                                            <th scope="col">Rol</th>
-                                            <th scope="col">Cargo</th>
+                                            <th scope="col">DUI</th>
+                                            <th scope="col">NIT</th>
+                                            <th scope="col">Direccion</th>
                                             <th scope="col">Teléfono</th>
+                                            <th scope="col">Cargo</th>
                                             <th scope="col">Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let employee of employees | async">
-                                            <th>{{ employee.id }}</th>
-                                            <th>{{ employee.nombre }}</th>
-                                            <td>{{ employee.rol }}</td>
-                                            <td>{{ employee.cargo }}</td>
-                                            <td>{{ employee.telefono }}</td>
+                                        <tr *ngFor="let empleado of empleadoList">
+                                            <td>{{empleado.nombre}}</td>
+                                            <td>{{empleado.dui}}</td>
+                                            <td>{{empleado.nit}}</td>
+                                            <td>{{empleado.direccion}}</td>
+                                            <td>{{empleado.telefono}}</td>
+                                            <td>{{empleado.cargo}}</td>
                                             <td>
                                                 <div class="btn-group btn-group-sm" role="group"
                                                     aria-label="Basic example">
-                                                    <button type="button" (click)="fillEditForm(employee.id)"
+                                                    <button type="button" (click)="editarEmpleado(empleado)"
                                                         class="btn btn-primary" data-toggle="modal"
                                                         data-target="#ModalEdit">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <button type="button" (click)="getEmploye(employee.id)"
+                                                    <button type="button" (click)="verEmpleado(empleado.$id)"
                                                         class="btn btn-light" data-toggle="modal"
                                                         data-target="#ModalView">
                                                         <i class="fa fa-eye"></i>
                                                     </button>
-                                                    <button type="button" (click)="getEmploye(employee.id)"
-                                                        class="btn btn-dark" data-toggle="modal"
-                                                        data-target="#ModalDelete">
+                                                    <button type="button" (click)="borrarEmpleado(empleado.$id)"
+                                                        class="btn btn-dark">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -77,242 +113,54 @@
                 </div>
             </section>
             <!-- Fin Tabla -->
-
-            <!-- Modal Crear-->
-            <div class="modal fade" id="ModalCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Nuevo empleado
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form [formGroup]="createForm">
-                            <input type="hidden" formControlName="estado" id="estado" name="estado">
-                            <div class="modal-body">
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" formControlName="nombre" class="form-control" id="nombre"
-                                            name="nombre">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="dui">DUI</label>
-                                        <input type="text" formControlName="dui" class="form-control" id="dui"
-                                            name="dui">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="nit">NIT</label>
-                                        <input type="text" formControlName="nit" class="form-control" id="nit"
-                                            name="nit">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-8">
-                                        <label for="direccion">Dirección</label>
-                                        <input type="text" formControlName="direccion" class="form-control"
-                                            id="direccion" name="direccion">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="telefono">Teléfono</label>
-                                        <input type="text" formControlName="telefono" class="form-control" id="telefono"
-                                            name="telefono">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="rol">Rol</label>
-                                        <select formControlName="rol" class="form-control" id="rol" name="rol">
-                                            <option value="Administrador" selected>Administrador</option>
-                                            <option value="Empleado">Empleado</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="cargo">Cargo</label>
-                                        <select formControlName="cargo" class="form-control" id="cargo" name="cargo">
-                                            <option value="Veterinario 1" selected>Veterinario 1</option>
-                                            <option value="Veterinario 2">Veterinario 2</option>
-                                            <option value="Veterinario 2">Veterinario 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" [disabled]="createForm.invalid"
-                                    (click)="createEmploye(createForm.value)" class="btn btn-primary align-self-center"
-                                    data-dismiss="modal">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- Fin Modal Crear-->
-
-            <!-- Modal Editar-->
-            <div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Editar empleado
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form [formGroup]="editForm">
-                            <input type="hidden" formControlName="id" id="id" name="id">
-                            <input type="hidden" formControlName="estado" id="estado" name="estado">
-                            <div class="modal-body">
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" formControlName="nombre" class="form-control" id="nombre"
-                                            name="nombre">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="dui">DUI</label>
-                                        <input type="text" formControlName="dui" class="form-control" id="dui"
-                                            name="dui">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="nit">NIT</label>
-                                        <input type="text" formControlName="nit" class="form-control" id="nit"
-                                            name="nit">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-8">
-                                        <label for="direccion">Dirección</label>
-                                        <input type="text" formControlName="direccion" class="form-control"
-                                            id="direccion" name="direccion">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="telefono">Teléfono</label>
-                                        <input type="text" formControlName="telefono" class="form-control" id="telefono"
-                                            name="telefono">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="rol">Rol</label>
-                                        <select formControlName="rol" class="form-control" id="rol" name="rol">
-                                            <option value="Administrador" selected>Administrador</option>
-                                            <option value="Empleado">Empleado</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="cargo">Cargo</label>
-                                        <select formControlName="cargo" class="form-control" id="cargo" name="cargo">
-                                            <option value="Veterinario 1" selected>Veterinario 1</option>
-                                            <option value="Veterinario 2">Veterinario 2</option>
-                                            <option value="Veterinario 2">Veterinario 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" [disabled]="editForm.invalid"
-                                    (click)="updateEmploye(editForm.value)" class="btn btn-primary align-self-center"
-                                    data-dismiss="modal">Editar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- Fin Modal Editar-->
-
-            <!-- Modal Detalle-->
-            <div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Información del empleado
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" *ngIf="employee">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <td class="font-weight-bold text-right">Nombre:</td>
-                                    <td class="text-left">{{ employee.nombre }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold text-right">DUI:</td>
-                                    <td class="text-left">{{ employee.dui }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold text-right">NIT:</td>
-                                    <td class="text-left">{{ employee.nit }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold text-right">Dirección:</td>
-                                    <td class="text-left">{{ employee.direccion }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold text-right">Teléfono:</td>
-                                    <td class="text-left">{{ employee.telefono }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold text-right">Rol:</td>
-                                    <td class="text-left">{{ employee.rol }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold text-right">Cargo:</td>
-                                    <td class="text-left">{{ employee.cargo }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold text-right">Estado:</td>
-                                    <td class="text-left">{{ employee.estado }}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Fin Modal Detalle-->
-
-            <!-- Modal para Borrar-->
-            <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Información del empleado
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form>
-                            <div class="modal-body" *ngIf="employee">
-                                <p>¿Desea desactivar este empleado?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" (click)="deactivateEmploye(employee.id)" class="btn btn-primary"
-                                    data-dismiss="modal">Desactivar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- Fin Modal para Borrar -->
-
         </div>
     </main>
     <!-- Fin Contenido Pagina" -->
+
+    <!-- Modal Detalle-->
+    <div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Información del empleado
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" *ngFor="let item of empleado ">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="font-weight-bold text-right">Nombre:</td>
+                            <td class="text-left">{{ item.nombre }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">DUI:</td>
+                            <td class="text-left">{{ item.dui }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">NIT:</td>
+                            <td class="text-left">{{ item.nit }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Dirección:</td>
+                            <td class="text-left">{{ item.direccion }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Teléfono:</td>
+                            <td class="text-left">{{ item.telefono }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Cargo:</td>
+                            <td class="text-left">{{ item.cargo }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Detalle-->
 </div>

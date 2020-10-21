@@ -1,10 +1,4 @@
 {
-<<<<<<< HEAD
-  "projects": {
-    "default": "veterinariaproyecto-4c0da"
-  }
-}
-=======
   "targets": {
     "veterinariaproyecto-4c0da": {
       "hosting": {
@@ -15,4 +9,3 @@
     }
   }
 }
->>>>>>> origin/ErikaDesarrollo
