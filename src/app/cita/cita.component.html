@@ -31,8 +31,7 @@
                             <label for="mascota">Mascota</label>
                             <select class="form-control" name="mascota" #mascota="ngModel"
                                 [(ngModel)]="citaService.selectCita.mascota">
-                                <option value="Koko" selected>Koko</option>
-                                <option value="LULU">LULU</option>
+                                <option  *ngFor="let pet of petList" value="{{pet.nombremascota}}">{{pet.nombremascota}}</option>
                             </select>
                         </div>
                     </div>

@@ -28,6 +28,10 @@ export class CitaService {
     return this.clienteList = this.firebase.list('cliente');
   }
 
+  getMascotas() {
+    return this.mascotaList = this.firebase.list('products');
+  }
+
   getDate($id: string) {
     return this.cita = this.firebase.list('citas', data => data.equalTo($id));
   }

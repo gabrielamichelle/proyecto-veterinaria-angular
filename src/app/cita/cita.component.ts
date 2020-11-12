@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cita } from '../models/cita';
 import { Cliente } from '../models/cita';
+import { Mascotas } from '../models/cita';
 import { CitaService } from '../services/cita.service';
 import { NgForm } from '@angular/forms';
 
@@ -14,6 +15,7 @@ export class CitaComponent implements OnInit {
   public cita: any[];
   public citaList: Cita[];
   public clientList: Cliente[];
+  public petList: Mascotas[];
 
   constructor(
     public citaService: CitaService
@@ -23,6 +25,7 @@ export class CitaComponent implements OnInit {
   ngOnInit(): void {
     this.llenarTabla();
     this.llenarComboClientes();
+    this.llenarComboMascotas();
     this.citaService.getDates();
     this.resetForm();
   }
@@ -67,6 +70,19 @@ export class CitaComponent implements OnInit {
           let x = element.payload.toJSON();
           x['$id'] = element.key;
           this.clientList.push(x as Cliente);
+        });
+      });
+  }
+
+  llenarComboMascotas() {
+    return this.citaService.getMascotas()
+      .snapshotChanges()
+      .subscribe(item => {
+        this.petList = [];
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x['$id'] = element.key;
+          this.petList.push(x as Mascotas);
         });
       });
   }
