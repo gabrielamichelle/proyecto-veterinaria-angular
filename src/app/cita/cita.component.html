@@ -1,1 +1,168 @@
-<p>cita works!</p>
+<div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- Fin Sidebar -->
+
+    <!-- Contenido Pagina" -->
+    <main class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-9">
+                    <h1 class="mb-0">Citas</h1>
+                </div>
+            </div>
+            <hr>
+            <section>
+                <form #citasForm="ngForm" (ngSubmit)="onSubmit(citasForm)">
+                    <input type="hidden" class="form-control" name="$id" #$id="ngModel"
+                        [(ngModel)]="citaService.selectCita.$id">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="cliente">Cliente</label>
+                            <select class="form-control" name="cliente" #cliente="ngModel"
+                                [(ngModel)]="citaService.selectCita.cliente">
+                                <option  *ngFor="let cliente of clientList" value="{{cliente.nombre}}">{{cliente.nombre}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="mascota">Mascota</label>
+                            <select class="form-control" name="mascota" #mascota="ngModel"
+                                [(ngModel)]="citaService.selectCita.mascota">
+                                <option value="Koko" selected>Koko</option>
+                                <option value="LULU">LULU</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="servicio">Servicio</label>
+                            <select class="form-control" name="servicio" #servicio="ngModel"
+                                [(ngModel)]="citaService.selectCita.servicio">
+                                <option value="Corte de pelo" selected>Corte de pelo</option>
+                                <option value="Baño completo">Baño completo</option>
+                                <option value="Consultas">Consultas</option>
+                                <option value="Alojamiento temporal">Alojamiento temporal</option>
+                                <option value="Control de plagas">Control de plagas</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="fecha">Fecha</label>
+                            <input type="date" class="form-control" placeholder="Fecha" name="fecha"
+                                #telefono="ngModel" [(ngModel)]="citaService.selectCita.fecha">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="hora">Hora</label>
+                            <input type="time" class="form-control" placeholder="Hora" name="hora"
+                                #telefono="ngModel" [(ngModel)]="citaService.selectCita.hora">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="reset" class="btn btn-dark ml-1" (click)="resetForm(citasForm)">Limpiar</button>
+                </form>
+            </section>
+
+            <!-- Tabla -->
+            <section class="py-3">
+                <div class="row">
+                    <div class="col-12 my-3">
+                        <div class="card rounded-0">
+                            <div class="card-header bg-light">
+                                <h6 class="font-weight-bold mb-0">Tabla de Datos</h6>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-hover table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Mascota</th>
+                                            <th scope="col">Servicio</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Hora</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let citas of citaList">
+                                            <td>{{citas.cliente}}</td>
+                                            <td>{{citas.mascota}}</td>
+                                            <td>{{citas.servicio}}</td>
+                                            <td>{{citas.fecha}}</td>
+                                            <td>{{citas.hora}}</td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm" role="group"
+                                                    aria-label="Basic example">
+                                                    <button type="button" (click)="editarCita(citas)"
+                                                        class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#ModalEdit">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" (click)="verCita(citas.$id)"
+                                                        class="btn btn-light" data-toggle="modal"
+                                                        data-target="#ModalView">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                    <button type="button" (click)="borrarCita(citas.$id)"
+                                                        class="btn btn-dark">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Fin Tabla -->
+        </div>
+    </main>
+    <!-- Fin Contenido Pagina" -->
+
+    <!-- Modal Detalle-->
+    <div class="modal fade" id="ModalView" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Información del empleado
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" *ngFor="let item of cita">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="font-weight-bold text-right">Cliente:</td>
+                            <td class="text-left">{{ item.cliente }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Mascota:</td>
+                            <td class="text-left">{{ item.mascota }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Servicio:</td>
+                            <td class="text-left">{{ item.servicio }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Fecha:</td>
+                            <td class="text-left">{{ item.fecha }}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-right">Hora:</td>
+                            <td class="text-left">{{ item.hora }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Detalle-->
+</div>
