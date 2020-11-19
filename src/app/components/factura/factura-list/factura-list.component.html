@@ -1,12 +1,23 @@
-<p>product-list works!</p>
+<p>FACTURAS</p>
 
 
 <div  class="card">
     <div class="card-body">
         <h6 class="text-center">
-            List of Products
+           Historial de Facturas
         </h6>
+        <div >
         <table class="table table-sm table-hover">
+            <thead class="thead-dark">
+              
+                    
+                <th> Nombre</th>
+                <th>Producto</th>
+                <th>Servicio</th>
+                <TH>Precio</TH>
+                <th>Opciones</th>
+                
+            </thead>
             <tbody>
                 <tr *ngFor="let product of productList">
                     <!--<td>{{product.$key}}</td>-->          
@@ -28,8 +39,9 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
-
+</div>
     <!-- Modal -->
  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
