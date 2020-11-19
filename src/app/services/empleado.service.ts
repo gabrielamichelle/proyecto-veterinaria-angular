@@ -52,33 +52,4 @@ export class EmpleadoService {
     this.empleadoList.remove($id);
   }
 
-  /* getAllEmployes(): Observable<any> {
-    const path = `${this.api}/empleado/`;
-    return this.http.get(path);
-  }
-
-  getEmploye(id: number): Observable<any> {
-    const path = `${this.api}/empleado/${id}`;
-    return this.http.get(path);
-  }
-
-  createEmploye(empleado: Empleado): Observable<any> {
-    const path = `${this.api}/empleado`;
-    return this.http.post(path, empleado);
-  }
-
-  updateEmploye(empleado: Empleado): Observable<any> {
-    const path = `${this.api}/empleado/${empleado.id}`;
-    return this.http.put(path, empleado);
-  }
-
-  updateStatus(empleado: Empleado): Observable<any> {
-    const path = `${this.api}/empleado/${empleado.id}`;
-    return this.http.patch(path, empleado);
-  }
-
-  deleteEmploye(id: number): Observable<any> {
-    const path = `${this.api}/empleado/${id}`;
-    return this.http.delete(path);
-  } */
 }
