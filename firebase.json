@@ -8,6 +8,7 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+<<<<<<< HEAD
     ],
     "rewrites": [
       {
@@ -18,5 +19,8 @@
   },
   "remoteconfig": {
     "template": "remoteconfig.template.json"
+=======
+    ]
+>>>>>>> Manueldesarrollo
   }
 }

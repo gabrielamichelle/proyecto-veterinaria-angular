@@ -5,6 +5,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { CitaComponent } from './cita/cita.component';
 import { CatalogoServicioComponent} from './catalogo-servicio/catalogo-servicio.component';
+import { FacturaComponent} from './components/factura/factura.component'; 
+import { FacturasComponent} from './components/factura/facturas/facturas.component';
+import { FacturaListComponent} from './components/factura/factura-list/factura-list.component';
 // Import all the components for which navigation service has to be activated
 import { SignInComponent } from '../app/components/sign-in/sign-in.component';
 import { SignUpComponent } from '../app/components/sign-up/sign-up.component';
@@ -19,6 +22,7 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { MascotaComponent } from './mascotas/mascota/mascota.component';
 import { MascotaListComponent } from './mascotas/mascota-list/mascota-list.component';
+
 
 const routes: Routes = [
   /*{
@@ -35,6 +39,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
+  
   {
     path: 'servicios',
     component: CatalogoServicioComponent
@@ -70,7 +75,19 @@ const routes: Routes = [
   {
     path: 'mascota-list',
     component: MascotaListComponent
+  },{
+    path: 'factura',
+    component: FacturaComponent 
   },
+  {
+    path: 'facturas',
+    component: FacturasComponent
+  },
+  {
+    path: 'factura-list',
+    component: FacturaListComponent
+  },
+  
   {
     path: '**',
     component: PageNotFoundComponent

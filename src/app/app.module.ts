@@ -12,8 +12,14 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+
+// Toastr, para notificaciones en angular
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 // Auth service
 import { UserService } from "./services/user.service";
+import { FacturaService} from "./services/factura.service";
 
 // services
 import { EmpleadoService } from './services/empleado.service';
@@ -43,8 +49,6 @@ import { ClienteService } from './servicecliente/cliente.service';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 // Toastr, para notificaciones en angular
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { MascotasComponent } from './mascotas/mascotas.component';
 import { MascotaComponent } from './mascotas/mascota/mascota.component';
 import { MascotaListComponent } from './mascotas/mascota-list/mascota-list.component';
@@ -52,6 +56,9 @@ import { MascotaListComponent } from './mascotas/mascota-list/mascota-list.compo
 //service
 import { MascotasService } from './services/mascotas.service';
 
+import { FacturaComponent } from './components/factura/factura.component';
+import { FacturasComponent } from './components/factura/facturas/facturas.component';
+import { FacturaListComponent } from './components/factura/factura-list/factura-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +72,9 @@ import { MascotasService } from './services/mascotas.service';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    FacturaComponent,
+    FacturasComponent,
+    FacturaListComponent,
     
     ProductosComponent,
     ExpedientemascotaComponent,
@@ -74,6 +84,7 @@ import { MascotasService } from './services/mascotas.service';
     MascotaListComponent
   ],
   
+  //providers: [UserService,],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -83,10 +94,12 @@ import { MascotasService } from './services/mascotas.service';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [ClienteService,UserService,EmpleadoService],
+  providers: [ClienteService,UserService,EmpleadoService,FacturaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

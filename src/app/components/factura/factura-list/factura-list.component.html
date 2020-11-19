@@ -1,0 +1,70 @@
+<p>product-list works!</p>
+
+
+<div  class="card">
+    <div class="card-body">
+        <h6 class="text-center">
+            List of Products
+        </h6>
+        <table class="table table-sm table-hover">
+            <tbody>
+                <tr *ngFor="let product of productList">
+                    <!--<td>{{product.$key}}</td>-->          
+                    <td>{{product.name}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.location}}</td>
+                    <td>{{product.price}}</td>
+                    <td>
+                        <a class="btn btn-secondary text-white" (click)="onEdit(product)">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger text-white" (click)="onDelete(product.$key)">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                        <a class="btn btn-dark text-white" data-toggle="modal" data-target="#exampleModal"  (click)="Seleccion(product)">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Informacion de Mascota</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <div class="form-group">
+            <div  id="areaImprimir" class="row">
+                <table class="table table-sm table-hover">
+                    <tbody>
+                        <tr >
+                            <!--<td>{{product.$key}}</td>-->          
+                            <td>{{productService.selectedProduct.name}}</td>
+                            <td>{{productService.selectedProduct.category}}</td>
+                            <td>{{productService.selectedProduct.location}}</td>
+                            <td>{{productService.selectedProduct.price}}</td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+  
+        </div>
+        <div class="modal-footer">
+<div class="col-md-2 col-sm-2  profile_left">
+<button onclick="printDiv('areaImprimir')" value="imprimir div"><img width="40" src="../../../assets/img/imprimir.png"></button>
+</div>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+</div>
